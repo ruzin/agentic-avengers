@@ -108,4 +108,23 @@ agentic-onepiece/
 
 ---
 
+## 🤝 Make your own crew
+
+The crew is just an abstraction — the *names* are yours to choose. Prefer the Ninja Turtles, the Avengers, or the *Friends* gang? Fork the repo and rename the skills to a crew you'll actually enjoy invoking.
+
+1. **Fork** this repo.
+2. **Copy a skill folder** under `skills/` and rename it to your character (e.g. `skills/leonardo/SKILL.md`).
+3. **Edit the `SKILL.md`** — update the `name`, `description`, and triggers so Claude Code invokes it by your character's name.
+4. **Keep the job, swap the costume** — a skill's *role* (builder, shipper, design reviewer, architect) is what matters; the persona is flavour.
+5. **Open a PR** to add your crew to the table below.
+
+### Community crews
+
+| Crew | Theme | Author |
+|------|-------|--------|
+| 🏴‍☠️ **[Straw Hats](#-the-crew)** | One Piece | this repo |
+| _your crew here_ | — | [open a PR](https://github.com/ruzin/agentic-onepiece/pulls) |
+
+---
+
 <p align="center"><em>“I'm gonna be King of the Pirates!” 🏴‍☠️</em></p>
