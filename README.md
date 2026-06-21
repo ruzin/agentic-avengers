@@ -10,6 +10,14 @@ Every skill is a self-contained `SKILL.md`. Claude Code loads them automatically
 
 ---
 
+## 🤔 Why skill abstractions make coding better and faster
+
+Asking an agent — every time you start your dev workflow — to "explore a codebase" or "fix a PR comment" or X, Y, or Z is time-consuming and error-prone. Abstractions are **easier to remember, quicker to invoke, and more consistent**, and you can **chain abstractions together** to form an agentic dev workflow end to end.
+
+And abstractions can be anything you like or enjoy — your crew could be the Ninja Turtles, Marvel characters, or the cast of *Friends* — injecting some fun into development. **Fork and make your own crew or characters, then PR to link it in [Make your own crew](#-make-your-own-crew).** 🏴‍☠️
+
+---
+
 ## ⚓ The Crew
 
 | Skill | Role | What it does |
