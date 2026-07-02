@@ -4,7 +4,7 @@
 
 # 🏴‍☠️ Agentic One Piece
 
-A Straw-Hat crew of [Claude Code](https://claude.com/claude-code) **agent skills** — each one a named crewmate with a job to do. Hand the crew a plan and they'll build it, navigate it to a green PR, plate the design, and chart the codebase.
+A Straw-Hat crew of [Claude Code](https://claude.com/claude-code) **agent skills** — each one a named crewmate with a job to do. Together they cover the workflow end to end: **chart** the codebase, **spec** the idea, **build** the feature, **review** the design, and **ship** it to a green PR.
 
 Why name them? A named abstraction is **easier to remember, quicker to invoke, and more consistent** than re-typing "explore the codebase" every time — and the crew **chains into a full dev workflow** end to end. (That the names are fun is a bonus.)
 
