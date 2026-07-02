@@ -52,16 +52,41 @@ Look for `DESIGN.md` at the repo root (then `docs/`, `.design/`).
      a `tokens.*`), a handful of representative components, and brand notes in
      `CLAUDE.md`/`README`. Describe the system that **exists**, not an aspirational
      one.
-  2. If `.reference/awesome-design-md/` exists, skim a nearby exemplar to calibrate
-     format and altitude (clone: `git clone
+  2. Calibrate the **format** against a gold-standard exemplar before writing: a
+     sibling `DESIGN.md` in a related repo if one exists, else an exemplar under
+     `.reference/awesome-design-md/` (clone: `git clone
      https://github.com/VoltAgent/awesome-design-md .reference/awesome-design-md`).
-  3. Write `DESIGN.md` to the repo root at the altitude below, announce that you
-     created it, then proceed with the review against it.
+     Match the **Google Labs `DESIGN.md` format** (see below) — that is the target
+     shape and quality bar.
+  3. Write `DESIGN.md` to the repo root in that format at the altitude below,
+     announce that you created it, then proceed with the review against it.
+     Validate it if the CLI is available: `npx @google/design.md lint DESIGN.md`.
 
 The two supporting lenses (both still apply): the **`frontend-design` skill** for
 general craft — the "is this *good*" lens (hierarchy, restraint, polish, avoiding
 generic "AI slop"); and **reference exemplars** for calibration. `DESIGN.md`
 remains the "is this *on-system*" lens.
+
+### Format — the Google Labs `DESIGN.md` (dual-layer)
+
+Target the [Google Labs `DESIGN.md` spec](https://github.com/google-labs-code/design.md):
+a **dual-layer** file — machine-readable **YAML front matter** (the exact tokens)
+plus **markdown prose** (the rationale: *why* each value exists). It is a portable
+design-system reference, not an engineering design doc.
+
+- **YAML front matter**: `name`, `version`, `description`, then token maps —
+  `colors` (raw + semantic; include light **and** dark values), `typography`
+  (family/size/weight/line-height), `rounded` (radius scale), `spacing` (dimension
+  scale), and `components` (element tokens that reference the others). These are
+  exact values reverse-engineered from the repo's real token files
+  (`globals.css`/`tailwind.config`), not invented.
+- **Prose sections**, in this order when present: **Overview · Colors · Typography ·
+  Layout · Elevation & Depth · Shapes · Components · Do's and Don'ts**. Then append
+  the living-doc extras that make it useful for review — **Async states**, **Known
+  gaps / documented exceptions**, and a short **"how to update this doc"** note.
+
+Keep prose = *why*, tokens = *exact*. The result should `lint` clean under
+`@google/design.md` and read like a first-class, project-specific design system.
 
 ### Altitude for a generated `DESIGN.md` — prescriptive on invariants, descriptive of reality, with escape hatches
 
