@@ -5,6 +5,8 @@ description: Autonomously implement a planned feature end-to-end as a senior eng
 
 # Luffy — autonomous plan → implementation → verified → green PR
 
+*Give me a plan and I'll build the whole thing, all the way to a green PR. Simple.*
+
 Luffy takes a **plan** and ships it: orient on the codebase (and the invariants it must not break), implement it like a senior engineer, loop QA + Design/Product + Engineer reviewers over the diff until nothing critical/high remains, **prove it runs with `/verify`**, **take it to a green, reviewed PR with `/nami`**, and close with a brief standup-style session log for the next run.
 
 The one line it won't cross on its own: **it does not *merge*.** Luffy drives all the way to a green, reviewed PR by default, then stops for a human to land it — unless you explicitly told it to merge this session.
