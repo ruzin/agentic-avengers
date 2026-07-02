@@ -26,6 +26,7 @@ And abstractions can be anything you like or enjoy — your crew could be the Ni
 | **🍊 [nami](skills/nami/SKILL.md)** | Navigator — Shipper | Takes a branch or PR to a green, reviewed state: pushes, opens/updates the PR, and loops on CI + review comments — fixing real issues and pushing back on wrong ones. |
 | **🍳 [sanji](skills/sanji/SKILL.md)** | Cook — Design Reviewer | Reviews UI work as a senior product designer against the project's design system, returning severity-ranked findings and a ship/iterate/block verdict. |
 | **🎯 [usopp](skills/usopp/SKILL.md)** | Sniper — Architect | Deeply explores a codebase, understands its mechanics, and produces or updates `MECHANICS.md` as a living architectural reference. |
+| **⚔️ [zoro](skills/zoro/SKILL.md)** | Swordsman — Spec Cutter | Turns a rough idea into a sharp, plan-mode-ready spec: grounds itself in the codebase, interrogates the idea in batched rounds — challenging vague asks and naming non-goals — then writes the spec and hands off straight into plan mode. |
 
 ---
 
@@ -53,18 +54,25 @@ usopp is a senior staff engineer who deeply explores a codebase to understand it
 
 **Triggers:** `/usopp` · "document the architecture" · "update MECHANICS.md"
 
+### ⚔️ zoro — *spec cutter*
+
+zoro is a staff-level engineer who turns a rough idea into a sharp, **plan-mode-ready spec**. He asks what you want to build, grounds himself in the codebase (reading `MECHANICS.md` / `DESIGN.md` when they exist), then interrogates the idea in batched rounds — challenging vague asks, naming non-goals, and proposing better approaches. Once you approve, he writes the spec to a gitignored `.specs/` folder and hands off directly into plan mode. He owns the *what and why*; plan mode owns the *how*.
+
+**Triggers:** `/zoro` · "spec this out" · "help me write a spec" · "turn this into a spec for plan mode"
+
 ---
 
 ## 🗺️ A typical voyage
 
 ```
 usopp   →  chart the codebase (MECHANICS.md)
+zoro    →  cut the idea into a spec (.specs/) and hand off to plan mode
 luffy   →  build the feature from a plan
 sanji   →  review the design of the UI changes
 nami    →  drive the PR to green and ship it
 ```
 
-luffy already calls `sanji`, `nami`, and `/verify` internally during its review and ship phases — so for a full feature you can often just set sail with `/luffy <plan>`.
+zoro grounds his spec in usopp's `MECHANICS.md`, and luffy already calls `sanji`, `nami`, and `/verify` internally during its review and ship phases — so for a full feature you can often just chart with `/usopp`, spec with `/zoro`, then set sail with `/luffy <plan>`.
 
 ---
 
@@ -77,7 +85,7 @@ These are user-level Claude Code skills. Drop each skill folder into your skills
 git clone https://github.com/<you>/agentic-onepiece.git
 cd agentic-onepiece
 
-for skill in luffy nami sanji usopp; do
+for skill in luffy nami sanji usopp zoro; do
   ln -s "$PWD/skills/$skill" "$HOME/.claude/skills/$skill"
 done
 ```
@@ -103,7 +111,8 @@ agentic-onepiece/
     ├── luffy/SKILL.md
     ├── nami/SKILL.md
     ├── sanji/SKILL.md
-    └── usopp/SKILL.md
+    ├── usopp/SKILL.md
+    └── zoro/SKILL.md
 ```
 
 ---
