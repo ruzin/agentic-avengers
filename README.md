@@ -20,45 +20,47 @@ And abstractions can be anything you like or enjoy — your crew could be the Ni
 
 ## ⚓ The Crew
 
+The table is in the order you'd usually use them — map the code, spec the idea, build it, check the design, ship it.
+
 | Skill | Role | What it does |
 |-------|------|--------------|
-| **🧢 [luffy](skills/luffy/SKILL.md)** | Captain — Builder | Autonomously implements a planned feature end-to-end, then drives it through a QA + Design + Engineer review loop until clean, verifies it runs, and ships a green PR. |
-| **🍊 [nami](skills/nami/SKILL.md)** | Navigator — Shipper | Takes a branch or PR to a green, reviewed state: pushes, opens/updates the PR, and loops on CI + review comments — fixing real issues and pushing back on wrong ones. |
-| **🍳 [sanji](skills/sanji/SKILL.md)** | Cook — Design Reviewer | Reviews UI work as a senior product designer against the project's `DESIGN.md`, returning severity-ranked findings and a ship/iterate/block verdict. On first run in a repo with no `DESIGN.md`, it establishes one from the real tokens, then reviews against it. |
-| **🎯 [usopp](skills/usopp/SKILL.md)** | Sniper — Architect | Deeply explores a codebase, understands its mechanics, and produces or updates `MECHANICS.md` as a living architectural reference. |
-| **⚔️ [zoro](skills/zoro/SKILL.md)** | Swordsman — Spec Cutter | Turns a rough idea into a sharp, plan-mode-ready spec: grounds itself in the codebase, interrogates the idea in batched rounds — challenging vague asks and naming non-goals — then writes the spec and hands off straight into plan mode. |
+| **🎯 [usopp](skills/usopp/SKILL.md)** | Sniper — Architect | Explores the codebase and writes `MECHANICS.md` — a living map of how it all works. |
+| **⚔️ [zoro](skills/zoro/SKILL.md)** | Swordsman — Spec Cutter | Turns a rough idea into a clear spec by asking the right questions, then hands it to plan mode. |
+| **🧢 [luffy](skills/luffy/SKILL.md)** | Captain — Builder | Builds a planned feature end to end, reviews its own work until it's clean, checks it runs, and opens a green PR. |
+| **🍳 [sanji](skills/sanji/SKILL.md)** | Cook — Design Reviewer | Reviews the UI against the project's `DESIGN.md` and gives a ship / iterate / block verdict. If there's no `DESIGN.md`, it writes one from the real design tokens first. |
+| **🍊 [nami](skills/nami/SKILL.md)** | Navigator — Shipper | Takes a branch or PR to green: pushes it, opens the PR, and works through CI failures and review comments. |
 
 ---
 
-### 🧢 luffy — *autonomous feature builder*
-
-Hand luffy a plan or spec (a file path or an inline description) and it builds the feature like a senior engineer, self-reviews through an iterative **QA + Design/Product + Engineer** loop, proves it actually runs with `/verify`, takes it to a green reviewed PR via `/nami`, and finishes with a standup-style session log.
-
-**Triggers:** `/luffy <plan>` · "run luffy on this plan" · "autonomously implement this feature" · "build this and review it until clean"
-
-### 🍊 nami — *navigator to a green PR*
-
-nami takes the helm on a branch or PR. It pushes, opens or updates the PR, then loops on the two external signals — **CI results** and **review comments** (bots + humans) — critically evaluating each: fixing real problems and pushing back on wrong suggestions, until checks are green and nothing blocking is unresolved. Also invoked in-context by luffy's ship phase.
-
-**Triggers:** `/nami` · "take this to a green PR" · "get CI green" · "address the PR comments" · "babysit this PR till it's green"
-
-### 🍳 sanji — *senior design reviewer*
-
-sanji reviews UI work — a PR, a diff, or a component — as a senior product (UX/UI) designer. It judges interaction quality, visual consistency, accessibility, content, and states against the repo's own `DESIGN.md` (binding source of truth), and returns severity-ranked findings with a **ship / iterate / block** verdict. On first run in a repo that has no `DESIGN.md`, it **establishes one** by reverse-engineering the real tokens/components — like usopp owns `MECHANICS.md` — then reviews against it. Design only — it defers correctness bugs to `/code-review` and luffy.
-
-**Triggers:** `/sanji <pr#|path>` · "review the design" · "sanji review this PR"
-
 ### 🎯 usopp — *codebase architect*
 
-usopp is a senior staff engineer who deeply explores a codebase to understand its architecture, design decisions, and mechanics, then produces or updates **`MECHANICS.md`** as a living architectural reference. First run generates the doc; subsequent runs read it first and update only what has changed.
+usopp explores a codebase to learn how it works — its architecture, key decisions, and moving parts — and writes it all down in **`MECHANICS.md`**, a living map anyone can read to get up to speed fast. The first run creates the doc; later runs read it and update only what has changed.
 
 **Triggers:** `/usopp` · "document the architecture" · "update MECHANICS.md"
 
 ### ⚔️ zoro — *spec cutter*
 
-zoro is a staff-level engineer who turns a rough idea into a sharp, **plan-mode-ready spec**. He asks what you want to build, grounds himself in the codebase (reading `MECHANICS.md` / `DESIGN.md` when they exist), then interrogates the idea in batched rounds — challenging vague asks, naming non-goals, and proposing better approaches. Once you approve, he writes the spec to a gitignored `.specs/` folder and hands off directly into plan mode. He owns the *what and why*; plan mode owns the *how*.
+zoro turns a rough idea into a clear, **plan-ready spec**. He asks what you want to build, reads the codebase (using `MECHANICS.md` / `DESIGN.md` when they exist), then asks the right questions in a few short rounds — pushing back on vague asks and pointing out what's out of scope. Once you approve, he saves the spec to a gitignored `.specs/` folder and hands it straight to plan mode. Zoro decides the *what and why*; plan mode works out the *how*.
 
 **Triggers:** `/zoro` · "spec this out" · "help me write a spec" · "turn this into a spec for plan mode"
+
+### 🧢 luffy — *autonomous feature builder*
+
+Hand luffy a plan or spec (a file or a quick description) and he builds the feature like a senior engineer, reviews his own work through a **QA + Design + Engineer** loop until it's clean, proves it actually runs with `/verify`, takes it to a green reviewed PR via `/nami`, and ends with a short session log.
+
+**Triggers:** `/luffy <plan>` · "run luffy on this plan" · "autonomously implement this feature" · "build this and review it until clean"
+
+### 🍳 sanji — *senior design reviewer*
+
+sanji reviews UI work — a PR, a diff, or a component — like a senior product designer. It checks the design against the repo's own **`DESIGN.md`** and returns clear findings with a **ship / iterate / block** verdict. If the repo has no `DESIGN.md`, it writes one first — reverse-engineering the real design tokens into the [Google `DESIGN.md`](https://github.com/google-labs-code/design.md) format (just like usopp owns `MECHANICS.md`) — then reviews against it. Design only; it leaves logic bugs to `/code-review` and luffy.
+
+**Triggers:** `/sanji <pr#|path>` · "review the design" · "sanji review this PR"
+
+### 🍊 nami — *navigator to a green PR*
+
+nami takes the helm on a branch or PR. She pushes it, opens or updates the PR, then works the two things that come back — **CI results** and **review comments** (bots and humans) — fixing what's real and pushing back on what's wrong, until checks are green and nothing blocking is left. luffy also calls her during its ship phase.
+
+**Triggers:** `/nami` · "take this to a green PR" · "get CI green" · "address the PR comments" · "babysit this PR till it's green"
 
 ---
 
