@@ -8,7 +8,7 @@ A Straw-Hat crew of [Claude Code](https://claude.com/claude-code) **agent skills
 
 ---
 
-## 🤔 Why skill abstractions make coding better and faster
+## 🚀 Why skill abstractions make coding better and faster
 
 Asking an agent — every time you start your dev workflow — to "explore a codebase" or "fix a PR comment" or X, Y, or Z is time-consuming and error-prone. Abstractions are **easier to remember, quicker to invoke, and more consistent**, and you can **chain abstractions together** to form an agentic dev workflow end to end.
 
@@ -30,7 +30,7 @@ The table is in the order you'd usually use them — map the code, spec the idea
 
 ---
 
-## 🚀 Usage
+## ⌨️ Usage
 
 Call a crewmate by name, or just describe the task and Claude Code picks the right one.
 
