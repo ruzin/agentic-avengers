@@ -6,13 +6,7 @@
 
 A Straw-Hat crew of [Claude Code](https://claude.com/claude-code) **agent skills** — each one a named crewmate with a job to do. Hand the crew a plan and they'll build it, navigate it to a green PR, plate the design, and chart the codebase.
 
----
-
-## 🤔 Why skill abstractions make coding better and faster
-
-Asking an agent — every time you start your dev workflow — to "explore a codebase" or "fix a PR comment" or X, Y, or Z is time-consuming and error-prone. Abstractions are **easier to remember, quicker to invoke, and more consistent**, and you can **chain abstractions together** to form an agentic dev workflow end to end.
-
-And abstractions can be anything you like or enjoy — your crew could be the Ninja Turtles, Marvel characters, or the cast of *Friends* — injecting some fun into development. **Fork and make your own crew or characters, then PR to link it in [Make your own crew](#-make-your-own-crew).** 🏴‍☠️
+Why name them? A named abstraction is **easier to remember, quicker to invoke, and more consistent** than re-typing "explore the codebase" every time — and the crew **chains into a full dev workflow** end to end. (That the names are fun is a bonus.)
 
 ---
 
