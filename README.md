@@ -24,7 +24,7 @@ And abstractions can be anything you like or enjoy — your crew could be the Ni
 |-------|------|--------------|
 | **🧢 [luffy](skills/luffy/SKILL.md)** | Captain — Builder | Autonomously implements a planned feature end-to-end, then drives it through a QA + Design + Engineer review loop until clean, verifies it runs, and ships a green PR. |
 | **🍊 [nami](skills/nami/SKILL.md)** | Navigator — Shipper | Takes a branch or PR to a green, reviewed state: pushes, opens/updates the PR, and loops on CI + review comments — fixing real issues and pushing back on wrong ones. |
-| **🍳 [sanji](skills/sanji/SKILL.md)** | Cook — Design Reviewer | Reviews UI work as a senior product designer against the project's design system, returning severity-ranked findings and a ship/iterate/block verdict. |
+| **🍳 [sanji](skills/sanji/SKILL.md)** | Cook — Design Reviewer | Reviews UI work as a senior product designer against the project's `DESIGN.md`, returning severity-ranked findings and a ship/iterate/block verdict. On first run in a repo with no `DESIGN.md`, it establishes one from the real tokens, then reviews against it. |
 | **🎯 [usopp](skills/usopp/SKILL.md)** | Sniper — Architect | Deeply explores a codebase, understands its mechanics, and produces or updates `MECHANICS.md` as a living architectural reference. |
 | **⚔️ [zoro](skills/zoro/SKILL.md)** | Swordsman — Spec Cutter | Turns a rough idea into a sharp, plan-mode-ready spec: grounds itself in the codebase, interrogates the idea in batched rounds — challenging vague asks and naming non-goals — then writes the spec and hands off straight into plan mode. |
 
@@ -44,7 +44,7 @@ nami takes the helm on a branch or PR. It pushes, opens or updates the PR, then 
 
 ### 🍳 sanji — *senior design reviewer*
 
-sanji reviews UI work — a PR, a diff, or a component — as a senior product (UX/UI) designer. It judges interaction quality, visual consistency, accessibility, content, and states against the repo's own `DESIGN.md` (binding source of truth; falls back to general craft when none exists), and returns severity-ranked findings with a **ship / iterate / block** verdict. Design only — it defers correctness bugs to `/code-review` and luffy.
+sanji reviews UI work — a PR, a diff, or a component — as a senior product (UX/UI) designer. It judges interaction quality, visual consistency, accessibility, content, and states against the repo's own `DESIGN.md` (binding source of truth), and returns severity-ranked findings with a **ship / iterate / block** verdict. On first run in a repo that has no `DESIGN.md`, it **establishes one** by reverse-engineering the real tokens/components — like usopp owns `MECHANICS.md` — then reviews against it. Design only — it defers correctness bugs to `/code-review` and luffy.
 
 **Triggers:** `/sanji <pr#|path>` · "review the design" · "sanji review this PR"
 

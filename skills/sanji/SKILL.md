@@ -1,6 +1,6 @@
 ---
 name: sanji
-description: Design reviewer — reviews as a senior product (UX/UI) designer. Reviews UI work — a PR, a diff, or a component — against the project's own design system for UX/interaction quality, visual consistency, accessibility, content, and states, and returns severity-ranked findings with a ship/iterate/block verdict. Reads the repo's DESIGN.md as the binding source of truth (falls back to the frontend-design skill + general craft when none exists). Design only — defers correctness/logic bugs to /code-review and luffy. Use when asked to "review the design", "have sanji review this PR / #123", "design review", or to judge the visual quality of frontend changes. Triggers: "/sanji <pr#|path>", "sanji review this".
+description: Design reviewer — reviews as a senior product (UX/UI) designer. Reviews UI work — a PR, a diff, or a component — against the project's own design system for UX/interaction quality, visual consistency, accessibility, content, and states, and returns severity-ranked findings with a ship/iterate/block verdict. Reads the repo's DESIGN.md as the binding source of truth; on first run in a repo with none, it establishes one by reverse-engineering the real tokens/components (like usopp owns MECHANICS.md), then reviews against it. Design only — defers correctness/logic bugs to /code-review and luffy. Use when asked to "review the design", "have sanji review this PR / #123", "design review", or to judge the visual quality of frontend changes. Triggers: "/sanji <pr#|path>", "sanji review this".
 ---
 
 # Sanji — design reviewer
@@ -30,24 +30,66 @@ The argument is the target. **Auto-detect** its form:
 - Empty → review the current working-tree diff (`git diff` + untracked).
 - If ambiguous, ask once.
 
-## Step 1 — Load the design source of truth (in this order)
+## Step 1 — Establish the design source of truth (`DESIGN.md`)
 
-1. **The project's `DESIGN.md`.** Look for it at the repo root (then `docs/`,
-   `.design/`). This is the binding spec — tokens, type, components, do/don't.
-   When it conflicts with general taste, the project's `DESIGN.md` wins. Also
-   skim the live token/theme files it points at (e.g. `globals.css`,
-   `tailwind.config`, a tokens file) so you review against real values, and any
-   brand/UX notes in `CLAUDE.md`/`AGENTS.md`/`CONTRIBUTING.md`.
-2. **The `frontend-design` skill**, if available, for general design-quality
-   craft (hierarchy, restraint, polish, avoiding generic "AI slop"). This is the
-   lens for "is this *good*"; `DESIGN.md` is the lens for "is this *on-system*".
-3. **Reference exemplars (optional).** If `.reference/awesome-design-md/` exists,
-   skim a nearby exemplar to calibrate the bar and the DESIGN.md format. To add
-   it: `git clone https://github.com/VoltAgent/awesome-design-md .reference/awesome-design-md`.
+`DESIGN.md` is sanji's binding spec — tokens, type, components, do/don't. Before
+reviewing, make sure one exists; on a repo that has none, **create it first**, the
+same way usopp owns `MECHANICS.md`. A review anchored to a real, project-specific
+source of truth is worth far more than one that falls back to generic craft.
 
-If there is **no `DESIGN.md`**, say so, review against the frontend-design skill +
-general best practice, and note that adding a `DESIGN.md` would sharpen future
-reviews (offer to draft one from the existing tokens).
+Look for `DESIGN.md` at the repo root (then `docs/`, `.design/`).
+
+- **If it exists** — read it fully; it's binding, and when it conflicts with
+  general taste, `DESIGN.md` wins. Also skim the live token/theme files it points
+  at (`globals.css`, `tailwind.config`, a tokens file) so you review against real
+  values, plus brand/UX notes in `CLAUDE.md`/`AGENTS.md`/`CONTRIBUTING.md`. If you
+  notice while reviewing that the doc has drifted from the real tokens, note it and
+  **offer to update the stale section** — don't silently rewrite it.
+- **If there is none (first run)** — bootstrap it *before* reviewing, then review
+  against it:
+  1. Reverse-engineer the system from what's actually in the repo — the
+     token/theme files (`globals.css`, `tailwind.config`, CSS custom properties,
+     a `tokens.*`), a handful of representative components, and brand notes in
+     `CLAUDE.md`/`README`. Describe the system that **exists**, not an aspirational
+     one.
+  2. If `.reference/awesome-design-md/` exists, skim a nearby exemplar to calibrate
+     format and altitude (clone: `git clone
+     https://github.com/VoltAgent/awesome-design-md .reference/awesome-design-md`).
+  3. Write `DESIGN.md` to the repo root at the altitude below, announce that you
+     created it, then proceed with the review against it.
+
+The two supporting lenses (both still apply): the **`frontend-design` skill** for
+general craft — the "is this *good*" lens (hierarchy, restraint, polish, avoiding
+generic "AI slop"); and **reference exemplars** for calibration. `DESIGN.md`
+remains the "is this *on-system*" lens.
+
+### Altitude for a generated `DESIGN.md` — prescriptive on invariants, descriptive of reality, with escape hatches
+
+A `DESIGN.md` is a **binding reference a reviewer can point at**, not a
+pixel-by-pixel spec. Wrong altitude in either direction and it rots: **too
+prescriptive** (every component variant, aesthetic vibes like "buttons should feel
+friendly") goes stale in a week and becomes a nit-weapon; **too loose** adds
+nothing over generic craft. Encode the **invariants** — the things that are
+objectively "off-system" when violated and that you'll actually cite in findings —
+and derive them from the repo's real values:
+
+- **The one rule that matters most** — name it up front (e.g. an accent/status-color
+  rule, or the spacing-grid rule). Most systems have one or two load-bearing rules.
+- **Tokens** — the real semantic tokens + palette, light/dark values, and "use the
+  tokens, no raw hex".
+- **Type & spacing scales** — the actual scale, and "snap to it".
+- **Theme parity + a11y bar** — every surface/state has a value in each theme; AA
+  contrast (4.5:1 body / 3:1 large-UI); `focus-visible` required.
+- **Components** — the real primitives (buttons, inputs, cards, dialogs) and their
+  states; reuse over reinvention.
+- **Async states** — loading / empty / error expectations.
+- **Do's & Don'ts** — short, concrete, project-specific.
+- **Known gaps / documented exceptions** and a short **"how to update this doc"**
+  note — the escape hatches that keep it a living reference, not a straitjacket.
+
+Keep it descriptive of the system that exists; leave craft judgment (is a layout
+*elegant*) to the review, not the spec. Date the file and mark it
+`Auto-generated by /sanji`.
 
 ## Step 2 — Find the design surface
 
@@ -119,7 +161,7 @@ Format:
 ```
 ## Sanji design review — <target>
 Verdict: SHIP | ITERATE | BLOCK
-Source of truth: <DESIGN.md path | "none — used frontend-design + general craft">
+Source of truth: <DESIGN.md path | "DESIGN.md (generated this run)" | "none — used frontend-design + general craft">
 Surfaces reviewed: <files>  (or: no design surface — backend/test only)
 
 ### Critical
