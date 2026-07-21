@@ -1,12 +1,4 @@
-```
-    _   _   _ _____ _   _  ____ _____ ____  ____
-   / \ | | | | ____| \ | |/ ___| ____|  _ \/ ___|
-  / _ \| | | |  _| |  \| | |  _|  _| | |_) \___ \
- / ___ \ |_| | |___| |\  | |_| | |___|  _ < ___) |
-/_/   \_\___/|_____|_| \_|\____|_____|_| \_\____/
-
-              . . . A S S E M B L E D
-```
+<p align="center"><img src="assets/banner.png" alt="AVENGERS … ASSEMBLED" width="100%"></p>
 
 An Avengers roster of [Claude Code](https://claude.com/claude-code) **agent skills** — each one a named hero with a job to do. Together they cover the workflow end to end: **chart** the codebase, **spec** the idea, **build** the feature, **review** the design, and **ship** it to a green PR.
 
